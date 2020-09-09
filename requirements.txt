@@ -19,7 +19,6 @@ pygame==1.9.4
 PyGetWindow==0.0.4
 pylint==2.4.4
 PyMsgBox==1.0.6
-pyodbc==4.0.24
 PyRect==0.1.4
 PyScreeze==0.1.20
 PyTweening==1.0.3
