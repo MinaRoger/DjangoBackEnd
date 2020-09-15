@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'products',
     'pages',
     'rest_framework',
-    'accounts'
+    'accounts',
+    'knox',
 ]
 
 MIDDLEWARE = [
