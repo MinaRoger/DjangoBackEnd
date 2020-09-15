@@ -1,0 +1,28 @@
+{% load static %}
+<html>
+
+<head>
+    <link rel="stylesheet" href="{% static 'css/Login.css' %}">
+
+</head>
+
+<body>
+
+<div class="container" id="container">
+    <div class="form-container sign-in-container">
+        <form method="POST">
+            <h1>Sign in</h1>
+            <span>using your account</span>
+            <input type="email" placeholder="Email" name="email"/>
+            <input type="password" placeholder="Password" name="password"/>
+            <a href="#">Forgot your password?</a>
+            <button type="submit" name=login>Sign In</button>
+            <button type="submit" name="register">Don't have an account? Register</button>
+
+        </form>
+    </div>
+</div>
+</body>
+
+
+</html>
