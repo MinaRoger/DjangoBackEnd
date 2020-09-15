@@ -20,6 +20,7 @@ from pages.views import login_view
 from pages.views import registration_view
 from rest_framework import routers
 from products.views import ProductViewSet
+from accounts.views import RegisterAPI
 
 router = routers.DefaultRouter()
 router.register(r'product', ProductViewSet)
@@ -30,6 +31,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path(r'', include(router.urls)),
     path('login/', login_view),
-    path('register/', registration_view),
+    path('register/', RegisterAPI.as_view(), name='register'),
 
 ]
