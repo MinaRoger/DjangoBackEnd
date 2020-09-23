@@ -135,5 +135,5 @@ REST_FRAMEWORK = {
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'minaroger841997@gmail.com'
-EMAIL_HOST_PASSWORD = '3amakmina'
+EMAIL_HOST_PASSWORD = '3amkmina'
 EMAIL_PORT = 587
