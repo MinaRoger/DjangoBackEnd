@@ -7,6 +7,8 @@ from rest_framework import permissions
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from knox.views import LoginView as KnoxLoginView
 from django.contrib.auth import login
+from emailer.emailer import send_welcome_email
+
 
 # Register API
 class RegisterAPI(generics.GenericAPIView):
@@ -14,17 +16,12 @@ class RegisterAPI(generics.GenericAPIView):
 
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
-        if serializer.is_valid(raise_exception=True):
-            user = serializer.save()
-            return Response({
-                "status": "200",
-                "user": UserSerializer(user, context=self.get_serializer_context()).data,
-                "token": AuthToken.objects.create(user)[1]
-            })
-        else:
-            return Response({
-                "status": "0"
-            })
+        serializer.is_valid(raise_exception=True)
+        user = serializer.save()
+        send_welcome_email(user.email, user.username)
+        return Response({
+            "token": AuthToken.objects.create(user)[1]
+        })
 
 
 class LoginAPI(KnoxLoginView):

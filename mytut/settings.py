@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'accounts',
     'knox',
+    'emailer',
+
 ]
 
 MIDDLEWARE = [
@@ -127,3 +129,11 @@ REST_FRAMEWORK = {
         'knox.auth.TokenAuthentication',
     ]
 }
+
+# GMAIL
+# Emailer settings
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'minaroger841997@gmail.com'
+EMAIL_HOST_PASSWORD = '3amakmina'
+EMAIL_PORT = 587
