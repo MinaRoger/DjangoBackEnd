@@ -1,12 +1,18 @@
 from rest_framework import serializers
-from products.models import Product
+from products.models import Product, Color
 from django.contrib.auth.models import User
 
 
 class ProductSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Product
-        fields = ('url', 'title', 'description', 'price')
+        fields = ('url', 'title', 'description', 'price', 'product')
+
+
+class ColorSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Color
+        fields = ('url', 'description', 'price', 'summary')
 
 
 # User Serializer

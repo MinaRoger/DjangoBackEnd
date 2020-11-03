@@ -20,19 +20,33 @@ from pages.views import login_view
 from pages.views import registration_view
 from rest_framework import routers
 from products.views import ProductViewSet
-from accounts.views import RegisterAPI
-from accounts.views import LoginAPI
+from products.views import ColorViewSet
 
+from accounts.views import RegisterAPI
+from accounts.views import LoginAPI,SocialLoginView
+from django.contrib.auth import views as auth_views
 
 router = routers.DefaultRouter()
 router.register(r'product', ProductViewSet)
+router.register(r'color', ColorViewSet)
 
 urlpatterns = [
     path('', home_view, name='home'),
     path('home/', home_view, name='home'),
     path('admin/', admin.site.urls),
     path(r'', include(router.urls)),
-    path('login/',  LoginAPI.as_view(), name='login'),
+    path('login/', LoginAPI.as_view(), name='login'),
     path('register/', RegisterAPI.as_view(), name='register'),
+    path('reset_password/', auth_views.PasswordResetView.as_view(), name='reset_password'),
+    path('reset_password_sent/', auth_views.PasswordResetDoneView.as_view(), name="password_reset_done"),
+    path('reset<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name="password_reset_confirm"),
+    path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
+    path('social-auth/', include('social_django.urls', namespace='social')),
+    path('logins/', login_view, name='logins'),
+    path('oauth/login/', SocialLoginView.as_view()),
+    path('api/auth/oauth/', include('rest_framework_social_oauth2.urls')),
+    path('social_auth/', include(('social_auth.urls', 'social_auth'),
+                                 namespace="social_auth")),
+
 
 ]
